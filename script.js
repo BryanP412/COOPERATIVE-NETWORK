@@ -1,3 +1,8 @@
+history.scrollRestoration = "manual";
+
+window.addEventListener("load", () => {
+    window.scrollTo(0, 0);
+});
 const btn = document.getElementById("arxBtn");
 const screen = document.getElementById("arxScreen");
 const text = document.getElementById("typewriter");
