@@ -671,3 +671,35 @@ nav{
     line-height: 1.5;
 
 }
+.news.glitch{
+
+    animation: newsGlitch .15s linear 4;
+
+}
+
+@keyframes newsGlitch{
+
+    0%{
+        transform:translate(0);
+        filter:none;
+    }
+
+    25%{
+        transform:translate(-4px,2px);
+        filter:hue-rotate(90deg);
+    }
+
+    50%{
+        transform:translate(4px,-2px);
+    }
+
+    75%{
+        transform:translate(-2px,-1px);
+    }
+
+    100%{
+        transform:none;
+        filter:none;
+    }
+
+}

@@ -57,3 +57,33 @@ function escribirTexto(mensaje, velocidad, callback) {
     }, velocidad);
 
 }
+
+const news = document.getElementById("news");
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (!entry.isIntersecting) return;
+
+        news.classList.add("glitch");
+
+        setTimeout(() => {
+
+            news.querySelectorAll("[data-final]").forEach(el => {
+                el.textContent = el.dataset.final;
+            });
+
+            news.classList.remove("glitch");
+
+        }, 450);
+
+        observer.disconnect();
+
+    });
+
+}, {
+    threshold: 0.4
+});
+
+observer.observe(news);
