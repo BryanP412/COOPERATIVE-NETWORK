@@ -92,3 +92,16 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 observer.observe(news);
+
+
+let clicksDirectrices = 0;
+
+document.getElementById("directrices").addEventListener("click", () => {
+    clicksDirectrices++;
+
+    if (clicksDirectrices === 3) {
+        document.body.innerHTML = `
+            <img src="classified1.png" style="width:100vw;height:100vh;object-fit:contain;">
+        `;
+    }
+});
