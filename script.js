@@ -105,3 +105,83 @@ document.getElementById("directrices").addEventListener("click", () => {
         `;
     }
 });
+
+const unilumeBtn = document.getElementById("unilumeBtn");
+const unilumeScreen = document.getElementById("unilumeScreen");
+const unilumeTerminal = document.getElementById("unilumeTerminal");
+
+const unilumeLines = [
+    "> ABORT.exe --force UNILUME",
+    "ACCESS DENIED",
+    "SIGINT sent to process UNILUME_CASCADE... FAILED",
+    "OVERWRITE PROTOCOL REJECTED [ERR:0x7F2A]",
+    "> terminate /PID 0042 /UNILUME",
+    "CRITICAL PROCESS IMMUNE TO TERMINATION",
+    "> ABORT.exe --force UNILUME",
+    "SEGMENTATION FAULT AT 0x88C2",
+    "> kill -9 UNILUME",
+    "OPERATION NOT PERMITTED",
+    "> BREAK UNILUME --recursive",
+    "ACCESS VIOLATION · OVERRIDE NEEDED",
+    "> ./abort_unilume.sh",
+    "PERMISSION DENIED · LEVEL 5 CLEARANCE REQUIRED",
+    "> ABORT.exe --force UNILUME",
+    "COULD NOT STOP · ROOT SEGMENT STILL ACTIVE",
+    "> taskkill /IM UNILUME.exe /F",
+    "PENDING... PENDING... PENDING...",
+    "> ABORT.exe --force UNILUME",
+    "EMERGENCY INTERRUPT FAILED [ERR:0x09CD]",
+    "> kill -9 UNILUME",
+    "SYSTEM SAYS NO.",
+    "> ABORT.exe --force UNILUME",
+    ">>> FATAL: CANNOT ABORT THE ACTIVATION",
+    "THE LIGHT ALREADY SHINES."
+];
+
+unilumeBtn.addEventListener("click", function (e) {
+
+    e.preventDefault();
+
+    unilumeScreen.classList.add("show");
+    unilumeTerminal.innerHTML = "";
+
+    let i = 0;
+
+    function mandarLinea() {
+
+        if (i >= unilumeLines.length) {
+
+            const final = document.createElement("p");
+            final.className = "final";
+            final.textContent = ">> UNILUME ACTIVATION WONT STOP <<";
+            unilumeTerminal.appendChild(final);
+
+            unilumeTerminal.scrollTop = unilumeTerminal.scrollHeight;
+
+            setTimeout(() => {
+                location.reload();
+            }, 2200);
+
+            return;
+        }
+
+        const p = document.createElement("p");
+        p.textContent = unilumeLines[i];
+        if (!unilumeLines[i].startsWith(">")) {
+            p.classList.add("err");
+        }
+        unilumeTerminal.appendChild(p);
+
+        unilumeTerminal.scrollTop = unilumeTerminal.scrollHeight;
+
+        i++;
+
+        // Pausa de ~1s antes del siguiente comando; respuestas algo más rápidas
+        const esComando = unilumeLines[i] && unilumeLines[i].startsWith(">");
+        setTimeout(mandarLinea, i >= unilumeLines.length ? 800 : (esComando ? 1000 : 650));
+
+    }
+
+    mandarLinea();
+
+});

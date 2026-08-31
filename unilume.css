@@ -1,0 +1,120 @@
+#unilumeScreen{
+
+    position: fixed;
+    inset: 0;
+
+    background: #000;
+
+    display: none;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    z-index: 999999;
+
+    overflow: hidden;
+
+}
+
+#unilumeScreen.show{
+
+    display: flex;
+
+}
+
+#unilumeTerminal{
+
+    width: 100%;
+    height: 100%;
+
+    padding: 40px 50px;
+
+    color: #33ff33;
+
+    font-family: monospace;
+
+    font-size: 16px;
+
+    line-height: 1.4;
+
+    overflow-y: auto;
+
+    white-space: pre;
+
+    text-shadow: 0 0 6px rgba(51,255,51,.6);
+
+}
+
+#unilumeTerminal p{
+
+    margin: 0;
+
+    opacity: 0;
+
+    animation: termLine .08s forwards;
+
+}
+
+#unilumeTerminal p.err{
+
+    color: #ff3333;
+
+    text-shadow: 0 0 6px rgba(255,51,51,.6);
+
+}
+
+#unilumeTerminal p.final{
+
+    color: #ff2222;
+
+    font-size: 34px;
+
+    letter-spacing: 6px;
+
+    margin-top: 30px;
+
+    text-align: center;
+
+    text-shadow: 0 0 14px rgba(255,34,34,.9);
+
+    animation: termFinal .2s forwards;
+
+}
+
+@keyframes termLine{
+
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+
+}
+
+@keyframes termFinal{
+
+    0%{
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: none;
+    }
+
+}
+
+#unilumeTerminal::-webkit-scrollbar{
+
+    width: 8px;
+
+}
+
+#unilumeTerminal::-webkit-scrollbar-thumb{
+
+    background: #1a5c1a;
+
+}
