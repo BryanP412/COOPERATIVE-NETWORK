@@ -15,15 +15,106 @@ body{
 
 /* Fondo */
 
+.background-light{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background:url("luz2.png") center center / cover no-repeat;
+    opacity:.035;
+    pointer-events:none;
+    animation:backgroundGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes backgroundGlow{
+    0%, 100%{ opacity:.025; }
+    8%{ opacity:.025; animation-timing-function:steps(1, end); }
+    10%{ opacity:.14; }
+    12%{ opacity:.03; }
+    25%{ opacity:.075; }
+    39%{ opacity:.19; animation-timing-function:steps(1, end); }
+    40%{ opacity:.025; }
+    52%{ opacity:.055; }
+    59%{ opacity:.24; animation-timing-function:steps(1, end); }
+    61%{ opacity:.03; }
+    73%{ opacity:.13; }
+    74%{ opacity:.025; }
+    86%{ opacity:.06; }
+    91%{ opacity:.18; animation-timing-function:steps(1, end); }
+    92%{ opacity:.025; }
+}
+
+/* El texto titila al mismo ritmo que la luz del fondo. */
+header :is(h2, h3, p, a, span),
+main :is(h1, h2, h3, p, a, span, button),
+footer{
+    animation:textFlicker 2.4s ease-in-out infinite;
+}
+
+@keyframes textFlicker{
+    0%, 100%{ filter:brightness(1); }
+    8%{ filter:brightness(1); animation-timing-function:steps(1, end); }
+    10%{ filter:brightness(1.12); }
+    12%{ filter:brightness(.96); }
+    25%{ filter:brightness(1.05); }
+    39%{ filter:brightness(1.16); animation-timing-function:steps(1, end); }
+    40%{ filter:brightness(.92); }
+    52%{ filter:brightness(1.03); }
+    59%{ filter:brightness(1.18); animation-timing-function:steps(1, end); }
+    61%{ filter:brightness(.97); }
+    73%{ filter:brightness(1.1); }
+    74%{ filter:brightness(.94); }
+    86%{ filter:brightness(1.04); }
+    91%{ filter:brightness(1.13); animation-timing-function:steps(1, end); }
+    92%{ filter:brightness(.96); }
+}
+
+.hero h1{
+    animation:titleFlicker 2.4s ease-in-out infinite;
+}
+
+@keyframes titleFlicker{
+    0%, 100%{
+        filter:brightness(.92);
+        text-shadow:0 0 0 rgba(220,235,255,0);
+    }
+    8%{ filter:brightness(.92); animation-timing-function:steps(1, end); }
+    10%{
+        filter:brightness(1.45);
+        text-shadow:0 0 24px rgba(220,235,255,.55);
+    }
+    17%{
+        filter:brightness(1.12);
+        text-shadow:0 0 10px rgba(220,235,255,.22);
+    }
+    25%{ filter:brightness(1.25); }
+    39%{ filter:brightness(1.5); animation-timing-function:steps(1, end); }
+    40%{
+        filter:brightness(.62);
+        text-shadow:0 0 0 rgba(220,235,255,0);
+    }
+    52%{ filter:brightness(.9); }
+    59%{ filter:brightness(1.55); animation-timing-function:steps(1, end); }
+    61%{ filter:brightness(.72); }
+    73%{
+        filter:brightness(1.35);
+        text-shadow:0 0 18px rgba(220,235,255,.38);
+    }
+    74%{ filter:brightness(.68); }
+    86%{ filter:brightness(1.02); }
+    91%{ filter:brightness(1.48); animation-timing-function:steps(1, end); }
+    92%{
+        filter:brightness(.7);
+        text-shadow:0 0 0 rgba(220,235,255,0);
+    }
+}
+
 .background-logo{
 
     position:fixed;
 
     inset:0;
 
-    background:url("coop.png") center center no-repeat;
-
-    background-size:700px;
+    background:url("coop2.png") center center / 700px auto no-repeat;
 
     opacity:.045;
 
@@ -404,7 +495,7 @@ nav{
     position: relative;
     display: inline-block;
     color: #d8d8d8;
-    animation: glitch 0.5s infinite;
+    animation: glitch 0.5s infinite, textFlicker 2.4s ease-in-out infinite;
 }
 
 .card p::before,

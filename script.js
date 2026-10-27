@@ -3,6 +3,36 @@ history.scrollRestoration = "manual";
 window.addEventListener("load", () => {
     window.scrollTo(0, 0);
 });
+
+const loader = document.getElementById("loader");
+const buzzingSound = document.getElementById("buzzingSound");
+
+let loaderFinished = false;
+
+function retryBuzzingAfterInteraction() {
+    buzzingSound.play().catch(() => {});
+}
+
+function startBuzzingAfterLoader() {
+    if (loaderFinished) return;
+    loaderFinished = true;
+
+    buzzingSound.play().catch(() => {
+        // Algunos navegadores bloquean el audio automático hasta una interacción.
+        document.addEventListener("pointerdown", retryBuzzingAfterInteraction, { once: true });
+        document.addEventListener("keydown", retryBuzzingAfterInteraction, { once: true });
+    });
+}
+
+loader.addEventListener("animationend", (event) => {
+    // Ignora el pulso infinito del logo, que también burbujea desde el loader.
+    if (event.target !== loader || event.animationName !== "fadeLoader") return;
+    startBuzzingAfterLoader();
+});
+
+// Respaldo por si el navegador no entrega animationend al volver de una pestaña oculta.
+window.setTimeout(startBuzzingAfterLoader, 6200);
+
 const btn = document.getElementById("arxBtn");
 const screen = document.getElementById("arxScreen");
 const text = document.getElementById("typewriter");
