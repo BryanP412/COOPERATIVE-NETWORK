@@ -45,6 +45,7 @@ body{
 
 /* El texto titila al mismo ritmo que la luz del fondo. */
 header :is(h2, h3, p, a, span),
+header .logo img,
 main :is(h1, h2, h3, p, a, span, button),
 footer{
     animation:textFlicker 2.4s ease-in-out infinite;
